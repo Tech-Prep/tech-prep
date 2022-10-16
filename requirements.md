@@ -1,7 +1,7 @@
 Group Project: Begin Wireframes & Software Requirements
 =======================================================
 
-TO DO: Provide an image of the UML in the readme of your project.
+![Tech Prep UML](./Project%20Prep%204%20UML%20Draft.png)
 
 User Stories
 ------------
