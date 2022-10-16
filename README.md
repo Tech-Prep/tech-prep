@@ -33,6 +33,6 @@ Build an Alexa Skill that allows a user to receive helpful interview training:
 
 ### UML
 
-![Tech Prep UML]()
+![Tech Prep UML](./Project Prep 4 UML Draft.png)
 
 
