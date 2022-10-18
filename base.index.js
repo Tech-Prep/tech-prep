@@ -5,6 +5,7 @@
  * */
 const Alexa = require('ask-sdk-core');
 const challenges = require('./challenges');
+const questions = require('./questions');
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -43,6 +44,21 @@ const GetChallengeIntentHandler = {
             .reprompt('Would you like to try another?')
             .getResponse();
 
+    }
+};
+
+const GetQuestionIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetQuestionIntent';
+    },
+    handle(handlerInput) {
+        const speakOutput = questions[Math.floor(Math.random() * questions.length)];
+
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt('Would you like to try another?')
+            .getResponse();
     }
 };
 
@@ -188,6 +204,7 @@ const ErrorHandler = {
 exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
+        GetQuestionIntentHandler,
         GetChallengeIntentHandler,
         GetHintIntentHandler,
         RepeatIntentHandler,
