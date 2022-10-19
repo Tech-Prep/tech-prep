@@ -34,6 +34,16 @@ Build an Alexa Skill that allows a user to receive helpful interview training:
 - Awards, levels, ranking system
 - Publish the app
 
+**required package.json dependencies:**
+
+        "dependencies": {
+            "ask-sdk-core": "^2.7.0",
+            "ask-sdk-model": "^1.19.0",
+            "aws-sdk": "^2.326.0",
+            "@aws-sdk/client-s3": "3.190.0",
+            "node-fetch": "2.6.7"
+          }
+
 ### UML
 
 ![Tech Prep UML](./Project%20Prep%204%20UML%20Draft.png)
