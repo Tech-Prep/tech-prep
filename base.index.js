@@ -6,6 +6,7 @@
 const Alexa = require('ask-sdk-core');
 const challenges = require('./challenges');
 const questions = require('./questions');
+const { addS3Object, getS3Object } = require('./s3');
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -29,21 +30,13 @@ const GetChallengeIntentHandler = {
     handle(handlerInput) {
         const chosenChallenge = challenges[Math.floor(Math.random() * challenges.length)];
         const speakOutput = chosenChallenge.description;
-        const challengeHints = chosenChallenge.hints;
 
-        let {attributesManager} = handlerInput;
-        let sessionAttributes = attributesManager.getSessionAttributes();
-
-        sessionAttributes.lastSpeech = speakOutput;
-        sessionAttributes.hints = challengeHints;
-
-        attributesManager.setSessionAttributes(sessionAttributes);
+        addS3Object('chosenChallenge.json', chosenChallenge);
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt('Would you like to try another?')
             .getResponse();
-
     }
 };
 
@@ -149,10 +142,12 @@ const GetHintIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest' && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetHintIntent';
     },
-    handle(handlerInput) {
-        const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-        const { hints } = sessionAttributes;
-        const speakOutput = hints[Math.floor(Math.random() * hints.length)];
+    async handle(handlerInput) {
+        let chosenChallenge = await getS3Object('chosenChallenge.json');
+        console.log(chosenChallenge, typeof chosenChallenge, Object.keys(chosenChallenge));
+        const speakOutput = chosenChallenge.hints[
+            Math.floor(Math.random() * chosenChallenge.hints.length)
+        ];
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt(speakOutput)
@@ -162,14 +157,12 @@ const GetHintIntentHandler = {
 
 const RepeatIntentHandler = {
     canHandle(handlerInput) {
-   return Alexa.getRequestType(handlerInput.requestEnvelope) ===   'IntentRequest' && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.RepeatIntent';
+        return Alexa.getRequestType(handlerInput.requestEnvelope) ===   'IntentRequest' && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.RepeatIntent';
    },
-    handle(handlerInput) {
-     const sessionAttributes =
-    handlerInput.attributesManager.getSessionAttributes();
-    const { lastSpeech } = sessionAttributes;
-    const speakOutput = lastSpeech;
-   return handlerInput.responseBuilder
+   async handle(handlerInput) {
+        let chosenChallenge = await getS3Object('chosenChallenge.json');
+        const speakOutput = chosenChallenge.description;
+        return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt(speakOutput)
             .getResponse();
