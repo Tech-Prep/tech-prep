@@ -4,16 +4,14 @@
  * session persistence, api calls, and more.
  * */
 const Alexa = require('ask-sdk-core');
-const challenges = require('./challenges');
-const questions = require('./questions');
-const { addS3Object, getS3Object } = require('./s3');
+const { addS3Object, getS3Object, deleteS3Object } = require('./s3');
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Hello, would you like to try a code challenge? Say give me a code challenge to get started.';
+        const speakOutput = 'Hello, welcome to Tech Prep! You can ask for a code challenge, practice interview question, or get a list of recent job postings. Which will it be?';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -27,16 +25,26 @@ const GetChallengeIntentHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetChallengeIntent';
     },
-    handle(handlerInput) {
-        const chosenChallenge = challenges[Math.floor(Math.random() * challenges.length)];
+    async handle(handlerInput) {
+        
+        let challengesArray = await getS3Object('challenges.json');
+        const chosenChallenge = challengesArray[Math.floor(Math.random() * challengesArray.length)];
         const speakOutput = chosenChallenge.description;
-
+        const challengeSolution = chosenChallenge.solution;
+        
         addS3Object('chosenChallenge.json', chosenChallenge);
-
+        
+        let {attributesManager} = handlerInput;
+        let sessionAttributes = attributesManager.getSessionAttributes();
+        
+        sessionAttributes.chosenChallenge = chosenChallenge;
+        sessionAttributes.lastSpeech = speakOutput;
+        
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt('Would you like to try another?')
             .getResponse();
+        
     }
 };
 
@@ -45,14 +53,62 @@ const GetQuestionIntentHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetQuestionIntent';
     },
-    handle(handlerInput) {
-        const speakOutput = questions[Math.floor(Math.random() * questions.length)];
-
+    async handle(handlerInput) { 
+        
+        await deleteS3Object('chosenChallenge.json');
+        
+        let questionsArray = await getS3Object('questions.json');
+        const speakOutput = questionsArray[Math.floor(Math.random() * questionsArray.length)];
+        
+        let {attributesManager} = handlerInput;
+        let sessionAttributes = attributesManager.getSessionAttributes();
+        
+        sessionAttributes.lastSpeech = speakOutput;
+        
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt('Would you like to try another?')
             .getResponse();
+        
     }
+};
+
+
+const GetHintIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest' && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetHintIntent';
+    },
+    async handle(handlerInput) {
+        
+        let speakOutput = '';
+        
+        try {
+            let chosenChallenge = await getS3Object('chosenChallenge.json');
+            speakOutput = chosenChallenge.hints[Math.floor(Math.random() * chosenChallenge.hints.length)];
+        } catch (error) {
+            speakOutput = 'Please ask for a code challenge first';
+        }
+        
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt(speakOutput)
+            .getResponse();
+  }
+};
+
+const RepeatIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) ===   'IntentRequest' && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.RepeatIntent';
+   },
+    handle(handlerInput) {
+        const sessionAttributes = handlerInput.attributesManager.getSessionAttributes(); 
+        const { lastSpeech } = sessionAttributes;
+        const speakOutput = lastSpeech;
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt(speakOutput)
+            .getResponse();
+  }
 };
 
 const HelpIntentHandler = {
@@ -87,7 +143,7 @@ const CancelAndStopIntentHandler = {
 /* *
  * FallbackIntent triggers when a customer says something that doesn’t map to any intents in your skill
  * It must also be defined in the language model (if the locale supports it)
- * This handler can be safely added but will be ingnored in locales that do not support it yet
+ * This handler can be safely added but will be ingnored in locales that do not support it yet 
  * */
 const FallbackIntentHandler = {
     canHandle(handlerInput) {
@@ -104,9 +160,9 @@ const FallbackIntentHandler = {
     }
 };
 /* *
- * SessionEndedRequest notifies that a session was ended. This handler will be triggered when a currently open
- * session is closed for one of the following reasons: 1) The user says "exit" or "quit". 2) The user does not
- * respond or says something that does not match an intent defined in your voice model. 3) An error occurs
+ * SessionEndedRequest notifies that a session was ended. This handler will be triggered when a currently open 
+ * session is closed for one of the following reasons: 1) The user says "exit" or "quit". 2) The user does not 
+ * respond or says something that does not match an intent defined in your voice model. 3) An error occurs 
  * */
 const SessionEndedRequestHandler = {
     canHandle(handlerInput) {
@@ -120,8 +176,8 @@ const SessionEndedRequestHandler = {
 };
 /* *
  * The intent reflector is used for interaction model testing and debugging.
- * It will simply repeat the intent the user said. You can create custom handlers for your intents
- * by defining them above, then also adding them to the request handler chain below
+ * It will simply repeat the intent the user said. You can create custom handlers for your intents 
+ * by defining them above, then also adding them to the request handler chain below 
  * */
 const IntentReflectorHandler = {
     canHandle(handlerInput) {
@@ -138,41 +194,10 @@ const IntentReflectorHandler = {
     }
 };
 
-const GetHintIntentHandler = {
-    canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest' && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetHintIntent';
-    },
-    async handle(handlerInput) {
-        let chosenChallenge = await getS3Object('chosenChallenge.json');
-        console.log(chosenChallenge, typeof chosenChallenge, Object.keys(chosenChallenge));
-        const speakOutput = chosenChallenge.hints[
-            Math.floor(Math.random() * chosenChallenge.hints.length)
-        ];
-        return handlerInput.responseBuilder
-            .speak(speakOutput)
-            .reprompt(speakOutput)
-            .getResponse();
-  }
-};
-
-const RepeatIntentHandler = {
-    canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) ===   'IntentRequest' && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.RepeatIntent';
-   },
-   async handle(handlerInput) {
-        let chosenChallenge = await getS3Object('chosenChallenge.json');
-        const speakOutput = chosenChallenge.description;
-        return handlerInput.responseBuilder
-            .speak(speakOutput)
-            .reprompt(speakOutput)
-            .getResponse();
-  }
-};
-
 /**
  * Generic error handling to capture any syntax or routing errors. If you receive an error
  * stating the request handler chain is not found, you have not implemented a handler for
- * the intent being invoked or included it in the skill builder below
+ * the intent being invoked or included it in the skill builder below 
  * */
 const ErrorHandler = {
     canHandle() {
@@ -192,7 +217,7 @@ const ErrorHandler = {
 /**
  * This handler acts as the entry point for your skill, routing all request and response
  * payloads to the handlers above. Make sure any new handlers or interceptors you've
- * defined are included below. The order matters - they're processed top to bottom
+ * defined are included below. The order matters - they're processed top to bottom 
  * */
 exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(

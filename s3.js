@@ -1,5 +1,5 @@
 const { Response } = require('node-fetch');
-const { S3Client, PutObjectCommand, GetObjectCommand } = require("@aws-sdk/client-s3");
+const { S3Client, PutObjectCommand, GetObjectCommand, DeleteObjectCommand } = require("@aws-sdk/client-s3");
 
 // Configuration from API docs: https://github.com/aws/aws-sdk-js-v3#configuration
 // Region is default from Alexa in S3 bucket
@@ -43,7 +43,20 @@ async function getS3Object(key){
   return jsonResponse;
 }
 
+async function deleteS3Object(key, value) {
+  const input = {
+    Key: `${keyPrefix}/${key}`,
+    Bucket: bucket,
+  };
+
+  const client = new S3Client(config);
+  // DeleteObjectCommand: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-s3/classes/deleteobjectcommand.html
+  const command = new DeleteObjectCommand(input);
+  const response = await client.send(command);
+}
+
 module.exports = {
   addS3Object,
   getS3Object,
+  deleteS3Object,
 };
