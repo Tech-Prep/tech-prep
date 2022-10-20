@@ -2,41 +2,41 @@
 	{"title": "Tree Sum",
 	"description": "Write a function to find the sum of all the odd numbers in a binary search tree.",
 	"hints": ["Try using a variable to store your output.", "Have you considered using a recursive function?"],
-	"solution": "Do the thing that makes it work"
+	"solution": "https://www.geeksforgeeks.org/print-all-odd-nodes-of-binary-search-tree/"
 	},
 	{"title": "Max Stack",
 	"description": "Write a max stack function that returns the largest element in a stack.",
 	"hints": ["You can assume all the values in the stack are numbers.", "Consider using another data structure like an array or linked list somehow."],
-	"solution": "Do the thing that makes it work"
+	"solution": "https://www.geeksforgeeks.org/tracking-current-maximum-element-in-a-stack/"
 	},
 	{"title": "Reverse Linked List",
 	"description": "Write a function that reverses a linked list.",
 	"hints": ["You could make a copy of the list, but try finding an in-place solution.", "Have you thought of using a few temporary reference variables?"],
-	"solution": "Initialize three pointers prev as NULL, curr as head, and next as NULL. Iterate through the linked list. In a loop, do the following: Before changing the next of curr, store the next node: next = curr -> next. Now update the next pointer of curr to the prev: curr -> next = prev. Update prev as curr and curr as next: prev = curr & curr = next"
+	"solution": "https://www.geeksforgeeks.org/reverse-a-linked-list/"
 	},
 	{"title": "Linked List Palindrome",
 	"description": "Write a function to validate whether or not a linked list is a palindrome. Your return value should be a boolean.",
 	"hints": ["A palindrome is a word, phrase, number or sequence of nodes that reads the same backward as forward.", "Have you ever reversed a linked list? One possible solution might utilize this approach."],
-	"solution": "Do the thing that makes it work"
+	"solution": "https://www.geeksforgeeks.org/function-to-check-if-a-singly-linked-list-is-palindrome/"
 	},
 	{"title": "Tree Traversal",
 	"description": "Write a function that takes in a binary tree and log the value of each node within the tree.",
 	"hints": ["Have you considered using recursion?", "The order of the nodes doesn't matter."],
-	"solution": "Do the thing that makes it work"
+	"solution": "https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/"
 	},
 	{"title": "Matrix Sum",
 	"description": "Write a function to add up the sum of each row in a matrix of arbitrary size, and return an array with the appropriate values.",
 	"hints": ["A matrix is an array of arrays.", "Assume all values will be integers and consider null to be zero."],
-	"solution": "Do the thing that makes it work"
+	"solution": "https://www.geeksforgeeks.org/program-to-find-the-sum-of-each-row-and-each-column-of-a-matrix/"
 	},
-	{"title": "Fibonacci",
-	"description": "Write a function that accepts an integer, and returns the nth number in the Fibonacci sequence.",
-	"hints": ["Your solution should probably use recursion or iteration with a while or for loop.", "The fibonacci sequence adds the previous two numbers together. The first seven numbers are 0, 1, 1, 2, 3, 5, and 8"],
-	"solution": "Do the thing that makes it work"
+	{"title": "Leaf Sum",
+	"description": "Given a binary tree, write a function that finds the sum of all the leaf nodes.",
+	"hints": ["Start with deciding how you would traverse this tree.", "Leaf nodes are the nodes with no children."],
+	"solution": "https://www.geeksforgeeks.org/sum-leaf-nodes-binary-tree/"
 	},
-	{"title": "Binary Search",
-	"description": "Write a function called Binary Search which takes in 2 parameters: a sorted array and the search key. Without utilizing any of the built-in methods available to your language, return the index of the arrays element that is equal to the value of the search key, or -1 if the element is not in the array.",
-	"hints": ["Remember to use a binary search, not a sequential search.", "You should be comparing the search value to the middle element in the array."],
-	"solution": "Do the thing that makes it work"
+	{"title": "Count List Nodes",
+	"description": "Write a function to count the number of nodes in a given singly linked list.",
+	"hints": ["You can take an iterative approach or a recursive approach.", "Consider a counter variable to help you keep count."],
+	"solution": "https://www.geeksforgeeks.org/find-length-of-a-linked-list-iterative-and-recursive/?ref=lbp"
 	}
 ]
