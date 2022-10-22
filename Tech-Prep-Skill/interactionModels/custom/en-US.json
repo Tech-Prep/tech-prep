@@ -1,0 +1,141 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "tech prep",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "GetChallengeIntent",
+          "slots": [],
+          "samples": [
+            "code problem",
+            "coding problem",
+            "code challenge",
+            "coding challenge",
+            "code",
+            "coding",
+            "code practice",
+            "coding practice",
+            "a challenge",
+            "technical question",
+            "let\u0027s do a code challenge",
+            "give me a code challenge",
+            "skip",
+            "skip challenge",
+            "next code challenge",
+            "next challenge"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.RepeatIntent",
+          "samples": [
+            "repeat code problem",
+            "tell me the code problem",
+            "what was that code problem",
+            "give me the code problem again",
+            "repeat the code problem",
+            "repeat problem",
+            "code challenge again",
+            "tell me the code challenge",
+            "what was that code challenge",
+            "give me the code challenge again",
+            "repeat code challenge",
+            "repeat that",
+            "tell me again",
+            "what",
+            "repeat challenge",
+            "I didn\u0027t hear that",
+            "I did not get that",
+            "I did not hear that",
+            "i didn\u0027t get that",
+            "what was that",
+            "say that again",
+            "repeat"
+          ]
+        },
+        {
+          "name": "GetHintIntent",
+          "slots": [],
+          "samples": [
+            "hint me",
+            "give a hint",
+            "tell me a hint",
+            "hints",
+            "any hints",
+            "Can I have a hint",
+            "hint please",
+            "hint",
+            "give me a hint"
+          ]
+        },
+        {
+          "name": "GetQuestionIntent",
+          "slots": [],
+          "samples": [
+            "next question",
+            "get interview question",
+            "give interview question",
+            "get interview",
+            "give interview",
+            "id like to be interviewed",
+            "ask me an interview question",
+            "interview",
+            "interview me"
+          ]
+        },
+        {
+          "name": "AMAZON.YesIntent",
+          "samples": [
+            "yes please",
+            "sure",
+            "yeah",
+            "yes"
+          ]
+        },
+        {
+          "name": "AMAZON.NoIntent",
+          "samples": [
+            "no way",
+            "nah",
+            "no thanks",
+            "no"
+          ]
+        },
+        {
+          "name": "FetchJobsIntent",
+          "slots": [],
+          "samples": [
+            "positions",
+            "jobs",
+            "search job postings",
+            "search job listings",
+            "job",
+            "find me a job",
+            "find job listings"
+          ]
+        }
+      ],
+      "types": []
+    }
+  },
+  "version": "9"
+}
