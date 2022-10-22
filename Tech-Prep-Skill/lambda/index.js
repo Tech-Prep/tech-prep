@@ -90,7 +90,7 @@ const FetchJobsIntentHandler = {
         const credentials = await sts
             .assumeRole(
                 {
-                    RoleArn: 'arn:aws:iam::948331367146:role/AlexaX',
+                    RoleArn: 'YOUR ARN',
                     RoleSessionName: 'SendEmailRoleSession'
                 },
                 (err, res) => {
@@ -247,7 +247,7 @@ const EmailIntentHandler = {
         const credentials = await sts
             .assumeRole(
                 {
-                    RoleArn: 'arn:aws:iam::948331367146:role/Alexa',
+                    RoleArn: 'YOUR ARN',
                     RoleSessionName: 'SendEmailRoleSession'
                 },
                 (err, res) => {
@@ -490,7 +490,7 @@ const GetChallengeIntentHandler = {
         const credentials = await sts
             .assumeRole(
                 {
-                    RoleArn: 'arn:aws:iam::143451010179:role/Alexa',
+                    RoleArn: 'YOUR ARN',
                     RoleSessionName: 'SendEmailRoleSession'
                 },
                 (err, res) => {
