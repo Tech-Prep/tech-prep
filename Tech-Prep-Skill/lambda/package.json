@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "KC Hofstetter, Stephen Clemmer, Brandon Pitts, Jack Stubblefield and Xavier Hillman",
+  "author": "Amazon Alexa",
   "license": "Apache License",
   "dependencies": {
     "ask-sdk-core": "^2.7.0",

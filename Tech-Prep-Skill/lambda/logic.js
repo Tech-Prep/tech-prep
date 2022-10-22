@@ -12,7 +12,7 @@ const options = {
         num_pages: '1'
     },
     headers: {
-        'X-RapidAPI-Key': '<YOUR API KEY HERE>',
+        'X-RapidAPI-Key': 'YOUR API KEY',
         'X-RapidAPI-Host': 'jsearch.p.rapidapi.com'
     }
 };
