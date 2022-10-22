@@ -1,3 +1,7 @@
+# Click the link below to go to the Table of Contents for the project README Folder.
+
+[Developer README Folder Table of Contents](./READMEs/Table-of-Contents.md)
+
 # tech-prep 401 Midterm Project
 
 **Authors:**
@@ -46,7 +50,7 @@ Build an Alexa Skill that allows a user to receive helpful interview training:
 
 ### UML
 
-![Tech Prep UML](./Project%20Prep%204%20UML%20Draft.png)
+![Tech Prep UML](./img/Tech-Prep%20UML%20(1).png)
 
 ### Code Walk Through
 
