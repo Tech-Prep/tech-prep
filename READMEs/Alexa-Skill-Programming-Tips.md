@@ -1,5 +1,7 @@
 # Alexa Skill Programming Tips
 
+## [Back to Table of Contents](./Table-of-Contents.md)
+
 1. Name each skill invocation in a unique manner
 
 Our team was made up of five software developers, each wokring on diffferent features of the Alexa skill at any given time. We chose to all work under a single developer's account, and created one Alexa skill per developer to act as "branches"; a Dev Skill into which our code would be merged, and a Main Skill into which final code would be merged. The Dev Skill would only be merged into the Main Skill after all tests pass.

@@ -1,5 +1,7 @@
 # Get a hint for the Code Challenge
 
+## [Back to Table of Contents](./Table-of-Contents.md)
+
 ## User Story - Purpose of Component
 As a user I would like to be able to ask Alexa for a hint to solving my code challenge.
 ___
