@@ -1,5 +1,7 @@
 # Get Recent Software Developer Jobs
 
+## [Back to Table of Contents](./Table-of-Contents.md)
+
 ## Developer Story - Purpose of Component
 
 > As a developer, I want to incorporate an API into the app to increase its functionality.

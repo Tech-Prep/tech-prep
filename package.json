@@ -1,0 +1,19 @@
+{
+  "name": "tech-prep",
+  "version": "1.2.0",
+  "description": "get code challenges to prepare for technical interviews",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "KC Hofstetter, Stephen Clemmer, Brandon Pitts, Jack Stubblefield and Xavier Hillman",
+  "license": "Apache License",
+  "dependencies": {
+    "ask-sdk-core": "^2.7.0",
+    "ask-sdk-model": "^1.19.0",
+    "aws-sdk": "^2.326.0",
+    "@aws-sdk/client-s3": "3.190.0",
+    "node-fetch": "2.6.7",
+    "axios": "^1.1.3"
+  }
+}

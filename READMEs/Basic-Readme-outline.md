@@ -8,7 +8,9 @@ Additional Resources
 
 ### Dependencies
 
-### Intents Utterances
+## Intents 
+
+## Utterances
 
 ### Notable Code Block w/Code Description.
 - Link to .js file with comments for each section

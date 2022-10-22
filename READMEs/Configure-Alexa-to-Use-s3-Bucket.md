@@ -1,5 +1,7 @@
 # Configure Alexa to Use an S3 Bucket
 
+## [Back to Table of Contents](./Table-of-Contents.md)
+
 ## Developer Story - Purpose of Component
 
 > As a developer I want to connect my Alexa skill to an S3 bucket as a way to add to, delete, and retrieve from storage.
@@ -202,7 +204,7 @@ async function getS3Object(key){
 
 ### Delete an object from the bucket
 
->The next bit of code we will target an object inside of the bucket, and delete it. This is similar to getting an object from the bucket.
+>The next bit of code will target an object inside of the bucket, and delete it. This is similar to getting an object from the bucket.
 
 >The code below specifies the bucket that is being accessed, and the object that is being deleted.
 

@@ -1,5 +1,7 @@
 # Code Walk Through
 
+## [Back to Table of Contents](./Table-of-Contents.md)
+
 ## Repeat the Code Challenge from the GetChallengeIntentHandler:
 SOURCE: <https://medium.com/alexa-skills-dev/how-to-store-data-in-your-alexa-skills-6dc17f2db9b4>
             
