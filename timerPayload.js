@@ -1,5 +1,5 @@
 const timerPayload = {
-  "duration": "PT30S",
+  "duration": "PT30M",
   "timerLabel": "challenge",
   "creationBehavior": {
      "displayExperience": {
