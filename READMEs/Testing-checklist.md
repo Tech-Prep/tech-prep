@@ -1,5 +1,7 @@
 # TechPrep Skill Testing
 
+## [Back to Table of Contents](./Table-of-Contents.md)
+
 Suite #1 - Code Challenge Yes to Timer w/ Hint
  - User: "Open Tech Prep"
  - Alexa: "<Welcome to Tech Prep Statement>"

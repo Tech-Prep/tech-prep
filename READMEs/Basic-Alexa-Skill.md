@@ -1,5 +1,7 @@
 # Basic Alexa Skill
 
+## [Back to Table of Contents](./Table-of-Contents.md)
+
 ## Developer Story
 
 As a developer I would like a basic Alexa skill to which I can add features.

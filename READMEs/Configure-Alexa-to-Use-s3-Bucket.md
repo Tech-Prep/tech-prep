@@ -1,5 +1,7 @@
 # Configure Alexa to Use an S3 Bucket
 
+## [Back to Table of Contents](./Table-of-Contents.md)
+
 ## Developer Story - Purpose of Component
 
 > As a developer I want to connect my Alexa skill to an S3 bucket as a way to add to, delete, and retrieve from storage.
