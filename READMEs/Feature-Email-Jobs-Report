@@ -10,9 +10,9 @@ As a user I would like Alexa to give me a list of current jobs and email them to
 
 Main Resources
 
-- To link external services to the alexa skill you must first follow this guide to setup IAM permissions. <https://developer.amazon.com/en-US/docs/alexa/hosted-skills/alexa-hosted-skills-personal-aws.html>
-- setting up the email params: <https://aws.amazon.com/premiumsupport/knowledge-center/lambda-send-email-ses/>
-- API reference for sending the email. <https://aws.amazon.com/premiumsupport/knowledge-center/lambda-send-email-ses/>
+- [Linking other AWS resources](https://developer.amazon.com/en-US/docs/alexa/hosted-skills/alexa-hosted-skills-personal-aws.html)
+- [Setting up the email params](https://aws.amazon.com/premiumsupport/knowledge-center/lambda-send-email-ses/)
+- [API reference for sending the email](https://aws.amazon.com/premiumsupport/knowledge-center/lambda-send-email-ses/)
 
 Additional Resources
 
